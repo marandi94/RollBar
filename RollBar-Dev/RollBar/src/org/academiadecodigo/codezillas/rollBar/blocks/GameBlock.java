@@ -1,28 +1,22 @@
 package org.academiadecodigo.codezillas.rollBar.blocks;
 
-import org.academiadecodigo.bootcamp.grid.position.GridPosition;
-import org.academiadecodigo.codezillas.rollBar.gridRollBar.GridRollBar;
+import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Position;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 
-public abstract class GameBlock implements Movable {
+public abstract class GameBlock implements Movable, KeyboardHandler {
 
     private Color color;
-    private GridRollBar grid;
+    private Grid grid;
     private Position position;
-    private KeyboardHandler keyboardHandler;
     private BlockType blockType;
     private boolean destroyed;
     private boolean active;
 
 
-    public GameBlock(Color color, BlockType blockType){
+    public GameBlock(){
 
-    }
-
-    public GridPosition getPosition() {
-        return position;
     }
 
     public boolean isDestroyed() {
@@ -35,16 +29,11 @@ public abstract class GameBlock implements Movable {
 
     public void move(Direction direction){
 
-
     }
 
     public void fall(){
 
     }
-
-
-
-
 
 
 
