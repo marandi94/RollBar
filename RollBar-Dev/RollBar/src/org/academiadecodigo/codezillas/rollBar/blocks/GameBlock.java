@@ -1,16 +1,13 @@
 package org.academiadecodigo.codezillas.rollBar.blocks;
 
-import org.academiadecodigo.codezillas.rollBar.Game;
 import org.academiadecodigo.codezillas.rollBar.graphics.Cube;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Position;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 
 public abstract class GameBlock implements Movable {
 
-    private Color color;
+    private BlockColor color;
     private Grid grid;
     private Position position;
     private BlockType blockType;
@@ -20,7 +17,7 @@ public abstract class GameBlock implements Movable {
 
 
 
-    public GameBlock(Color color, BlockType blockType, Position position){
+    public GameBlock(BlockColor color, BlockType blockType, Position position){
         this.position = position;
         this.color = color;
         this.blockType = blockType;
@@ -98,6 +95,10 @@ public abstract class GameBlock implements Movable {
 
     @Override
     public void drop() {
+        if (position.getCheckColision().checkIfColides(position, Direction.DOWN)){
+            return;
+        }
+        position.setRow(position.getRow() + 1);
         // Feature space bar drops the piece
     }
 

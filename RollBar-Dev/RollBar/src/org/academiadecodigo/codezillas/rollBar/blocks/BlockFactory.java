@@ -23,22 +23,22 @@ public abstract class BlockFactory {
 
 
 
-    private static Color chooseColorBlock(){
+    private static BlockColor chooseColorBlock(){
 
-        int random = (int) (Math.random() * Color.values().length);
+        int random = (int) (Math.random() * BlockColor.values().length);
 
         switch (random){
             case 0:
-                return Color.RED;
+                return BlockColor.RED;
             case 1:
-                return Color.GREEN;
+                return BlockColor.GREEN;
             case 2:
-                return Color.BLUE;
+                return BlockColor.BLUE;
             case 3:
-                return Color.YELLOW;
+                return BlockColor.YELLOW;
             default:
                 System.out.println("Block factory // choose color block // shit happened !!");
-                return Color.RED;
+                return BlockColor.RED;
         }
 
 
