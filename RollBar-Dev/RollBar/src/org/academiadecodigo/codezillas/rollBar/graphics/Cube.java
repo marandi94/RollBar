@@ -17,9 +17,7 @@ public class Cube implements KeyboardHandler {
    private Rectangle cube;
    private GameBlock gameBlock;
 
-
-
-   public Cube(Grid grid, Block gameblock) {
+   public Cube(Grid grid, GameBlock gameblock) {
       this.grid = grid;
       this.gameBlock = gameblock;
 
@@ -61,7 +59,7 @@ public class Cube implements KeyboardHandler {
             break;
          case KeyboardEvent.KEY_DOWN:
             if (gameBlock.fall()) {
-               cube.translate(0, grid.getCellSize());
+
                System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + gameBlock.getPosition().getRow());
                break;
             }
@@ -72,5 +70,20 @@ public class Cube implements KeyboardHandler {
 
    public void keyReleased(KeyboardEvent keyboardEvent) {
 
+   }
+
+   public void fall(boolean bool){
+      if(bool) {
+         cube.translate(0, grid.getCellSize());
+
+      }
+   }
+
+   public Rectangle getCube() {
+      return cube;
+   }
+
+   public GameBlock getGameBlock() {
+      return gameBlock;
    }
 }
