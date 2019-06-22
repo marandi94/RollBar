@@ -56,13 +56,6 @@ public class Cube implements KeyboardHandler {
                System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + gameBlock.getPosition().getRow());
                break;
             }
-            break;
-         case KeyboardEvent.KEY_DOWN:
-            if (gameBlock.fall()) {
-
-               System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + gameBlock.getPosition().getRow());
-               break;
-            }
       }
    }
 

@@ -12,6 +12,7 @@ public class Game {
     private Engine gameEngine;
     private GameBlock[][] matrix;
     private int delay;
+    private GameBlock[] activePiece = new GameBlock[2];
 
     public Game(Player[] players) {
         this.players = players;
@@ -50,6 +51,7 @@ public class Game {
                 if (isOccupied(activeBlock)) {
                     setBlockIndex(activeBlock);
                     activeBlock.setActive(false);
+                    break;
                 }
 
                 Thread.sleep(delay);
@@ -65,6 +67,9 @@ public class Game {
 
     public boolean isOccupied(GameBlock block){
 
+            if(block.getRow() > gameBoard.getRows()){
+                return true;
+            }
 
             if (matrix[block.getCol()][block.getRow() + 1] != null){
                 return true;
