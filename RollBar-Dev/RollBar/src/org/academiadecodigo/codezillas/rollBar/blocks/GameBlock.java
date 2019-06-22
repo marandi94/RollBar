@@ -1,14 +1,12 @@
 package org.academiadecodigo.codezillas.rollBar.blocks;
 
-import org.academiadecodigo.codezillas.rollBar.ColorMapper;
 import org.academiadecodigo.codezillas.rollBar.graphics.Cube;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Position;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 
-public abstract class GameBlock implements Movable {
+public abstract class GameBlock implements Movable, KeyboardHandler {
 
     private BlockColor color;
     private Grid grid;
@@ -18,44 +16,15 @@ public abstract class GameBlock implements Movable {
     private boolean active = true;
 
 
-    public GameBlock(BlockColor color, BlockType blockType, Position position){
-        this.grid = grid;
-        this.position = new Position(4, 0, grid);
 
+
+    public GameBlock(BlockColor color, BlockType blockType, Position position){
+        this.position = position;
+        this.color = color;
         this.blockType = blockType;
 
 
     }
-
-    public void keyPressed(KeyboardEvent keyboardEvent) {
-        int key = keyboardEvent.getKey();
-        if (!isActive()){
-            return;
-        }
-        switch (key) {
-            case KeyboardEvent.KEY_LEFT:
-                if (move(Direction.LEFT)) {
-                    translate(-grid.getCellSize(), 0);
-                    System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + gameBlock.getPosition().getRow());
-                    break;
-                }
-                break;
-            case KeyboardEvent.KEY_RIGHT:
-                if (move(Direction.RIGHT)) {
-                    cube.translate(grid.getCellSize(), 0);
-                    System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + getPosition().getRow());
-                    break;
-                }
-                break;
-            case KeyboardEvent.KEY_DOWN:
-                if (fall()) {
-
-                    System.out.println("GAMEBlock" + getPosition().getCol() + " " + getPosition().getRow());
-                    break;
-                }
-        }
-    }
-
 
     public Position getPosition() {
         return position;
@@ -95,19 +64,40 @@ public abstract class GameBlock implements Movable {
     }
 
 
+    public boolean fall() {
+        if (position.getCheckColision().checkIfColides(position,Direction.DOWN)){
+            setActive(false); // desativar bloco aqui??
+            return false;
+        }
+        position.setRow(position.getRow() + 1);
+        return true;
+    }
+
     @Override
     public void moveLeft() {
+
+        if (position.getCheckColision().checkIfColides(position,Direction.LEFT)) {
+            return;
+
+        }
         position.setCol(position.getCol() - 1);
     }
 
     @Override
     public void moveRight() {
+        if (position.getCheckColision().checkIfColides(position,Direction.RIGHT)) {
+           return;
+        }
         position.setCol(position.getCol() + 1);
     }
 
     @Override
     public void drop() {
+        if (position.getCheckColision().checkIfColides(position, Direction.DOWN)){
+            return;
+        }
         position.setRow(position.getRow() + 1);
+        // Feature space bar drops the piece
     }
 
     public void setDestroyed(){
@@ -131,11 +121,7 @@ public abstract class GameBlock implements Movable {
 
     }
 
-    public void setColor(BlockColor color){
 
-        color.equals(ColorMapper.getColor(color));
-
-    }
 
 
 
