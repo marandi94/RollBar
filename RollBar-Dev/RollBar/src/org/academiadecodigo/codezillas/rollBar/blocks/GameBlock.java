@@ -3,9 +3,10 @@ package org.academiadecodigo.codezillas.rollBar.blocks;
 import org.academiadecodigo.codezillas.rollBar.graphics.Cube;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Position;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 
-public abstract class GameBlock implements Movable {
+public abstract class GameBlock implements Movable, KeyboardHandler {
 
     private BlockColor color;
     private Grid grid;
@@ -21,6 +22,7 @@ public abstract class GameBlock implements Movable {
         this.position = position;
         this.color = color;
         this.blockType = blockType;
+
 
     }
 
@@ -88,10 +90,6 @@ public abstract class GameBlock implements Movable {
         }
         position.setCol(position.getCol() + 1);
     }
-
-
-
-
 
     @Override
     public void drop() {
