@@ -15,7 +15,7 @@ public abstract class GameBlock implements Movable {
     private Position position;
     private BlockType blockType;
     private boolean destroyed;
-    private boolean active;
+    private boolean active = true;
     private Cube blockPosition;
 
 
@@ -42,31 +42,36 @@ public abstract class GameBlock implements Movable {
         active = state;
     }
 
-    public void move(Direction direction){
+    public boolean move(Direction direction){
 
         switch (direction){
             case RIGHT:
                 if(position.getCheckColision().checkIfColides(position,Direction.RIGHT)){
-                    break;
+                    return false;
+
                   }
                 moveRight();
-                break;
+                return true;
             case LEFT:
                 if(position.getCheckColision().checkIfColides(position,Direction.LEFT)){
-                   break;
+                   return false;
                  }
                 moveLeft();
-                break;
+                return true;
         }
+
+        System.out.println("GameBlock/move shit happened!");
+        return false;
     }
 
 
-    public void fall() {
+    public boolean fall() {
         if (position.getCheckColision().checkIfColides(position,Direction.DOWN)){
-            return;
+            setActive(false); // desativar bloco aqui??
+            return false;
         }
         position.setRow(position.getRow() + 1);
-        return;
+        return true;
     }
 
     @Override
@@ -77,7 +82,6 @@ public abstract class GameBlock implements Movable {
 
         }
         position.setCol(position.getCol() - 1);
-        return;
     }
 
     @Override
@@ -86,7 +90,6 @@ public abstract class GameBlock implements Movable {
            return;
         }
         position.setCol(position.getCol() + 1);
-        return;
     }
 
 

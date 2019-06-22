@@ -3,34 +3,27 @@ package org.academiadecodigo.codezillas.rollBar.blocks;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Position;
 
-public class BlockFactory {
+public abstract class BlockFactory {
     private static GameBlock[] allBlocks = new GameBlock[20];
     private static int counter;
-    private Grid grid;
+    private static Grid grid;
 
-    public BlockFactory(Grid grid){
-        this.grid = grid;
+    public BlockFactory(){
+
     }
 
-    public  GameBlock chooseBlockType(){
-        GameBlock gameBlocks;
+    private static BlockType chooseBlockType(){
 
-      /*  if (random <= 3){
-            gameBlocks = new Breaker();
-            return gameBlocks;
-        }*/
-        Position initialPos = new Position(4,0,grid );
-        gameBlocks = new Block(chooseColorBlock(), BlockType.BLOCK, initialPos);
-        allBlocks[counter] = gameBlocks;
-        counter++;
-
-        return gameBlocks;
-        
+        int random =(int) Math.floor(Math.random()*100);
+        if (random <= 3) {
+            return BlockType.BREAKER;
+        }
+        return BlockType.BLOCK;
     }
 
 
 
-    public static Color chooseColorBlock(){
+    private static Color chooseColorBlock(){
 
         int random = (int) (Math.random() * Color.values().length);
 
@@ -51,11 +44,24 @@ public class BlockFactory {
 
     }
 
-    public void create(){
+    public static GameBlock create(){
 
+        BlockType blockType = chooseBlockType();
+        Position initialPos = new Position(4,0,grid);
 
-
+        if (blockType == BlockType.BLOCK){
+            Block block = new Block(chooseColorBlock(),blockType,initialPos);
+            allBlocks[counter] = block;
+            counter++;
+            return block;
+        }
+        Breaker breaker = new Breaker(chooseColorBlock(),blockType,initialPos);
+        allBlocks[counter] = breaker;
+        counter++;
+        return breaker;
     }
+
+
 
     public static GameBlock[] getAllBlocks() {
         return allBlocks;

@@ -10,7 +10,6 @@ public class Breaker extends GameBlock {
     }
 
     public boolean checkBreak(){
-
         return true;
     }
 

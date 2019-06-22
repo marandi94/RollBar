@@ -39,22 +39,30 @@ public class Cube implements KeyboardHandler {
 
    public void keyPressed(KeyboardEvent keyboardEvent) {
       int key = keyboardEvent.getKey();
+      if (!gameBlock.isActive()){
+         return;
+      }
       switch (key) {
          case KeyboardEvent.KEY_LEFT:
-            gameBlock.move(Direction.LEFT);
-            cube.translate(-grid.getCellSize(),0);
-            System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + gameBlock.getPosition().getRow());
+            if (gameBlock.move(Direction.LEFT)) {
+               cube.translate(-grid.getCellSize(), 0);
+               System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + gameBlock.getPosition().getRow());
+               break;
+            }
             break;
          case KeyboardEvent.KEY_RIGHT:
-            gameBlock.move(Direction.RIGHT);
-            cube.translate(grid.getCellSize(), 0);
-            System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + gameBlock.getPosition().getRow());
+            if (gameBlock.move(Direction.RIGHT)) {
+               cube.translate(grid.getCellSize(), 0);
+               System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + gameBlock.getPosition().getRow());
+               break;
+            }
             break;
          case KeyboardEvent.KEY_DOWN:
-            gameBlock.fall();
-            cube.translate(0, grid.getCellSize());
-            System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + gameBlock.getPosition().getRow());
-            break;
+            if (gameBlock.fall()) {
+               cube.translate(0, grid.getCellSize());
+               System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + gameBlock.getPosition().getRow());
+               break;
+            }
       }
    }
 

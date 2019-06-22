@@ -12,10 +12,8 @@ public class Main {
 
          Grid grid = new Grid();
 
-         BlockFactory factory = new BlockFactory(grid);
-
         grid.init();
-        Block block = (Block) factory.chooseBlockType();
+        Block block = (Block) BlockFactory.create();
         CheckColision colision = new CheckColision();
         colision.setAllBlocks(BlockFactory.getAllBlocks());
 
@@ -24,6 +22,9 @@ public class Main {
         Player one = new Player();
 
         one.initKeyboard(test);
+
+
+
 
 
     }
