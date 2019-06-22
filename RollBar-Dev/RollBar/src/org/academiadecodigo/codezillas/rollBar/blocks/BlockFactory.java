@@ -1,7 +1,10 @@
 package org.academiadecodigo.codezillas.rollBar.blocks;
 
+import org.academiadecodigo.codezillas.rollBar.Game;
+import org.academiadecodigo.codezillas.rollBar.graphics.Cube;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Position;
+
 
 public abstract class BlockFactory {
     private static GameBlock[] allBlocks = new GameBlock[20];
@@ -9,6 +12,12 @@ public abstract class BlockFactory {
     private static Grid grid;
 
     public BlockFactory(){
+
+    }
+
+    public static Cube createCube(Grid grid){
+
+        return new Cube(grid, create());
 
     }
 
@@ -20,8 +29,6 @@ public abstract class BlockFactory {
         }
         return BlockType.BLOCK;
     }
-
-
 
     private static BlockColor chooseColorBlock(){
 
@@ -50,12 +57,12 @@ public abstract class BlockFactory {
         Position initialPos = new Position(4,0,grid);
 
         if (blockType == BlockType.BLOCK){
-            Block block = new Block(chooseColorBlock(),blockType,initialPos);
+            GameBlock block = new Block(chooseColorBlock(),blockType,initialPos);
             allBlocks[counter] = block;
             counter++;
             return block;
         }
-        Breaker breaker = new Breaker(chooseColorBlock(),blockType,initialPos);
+        GameBlock breaker = new Breaker(chooseColorBlock(),blockType,initialPos);
         allBlocks[counter] = breaker;
         counter++;
         return breaker;
