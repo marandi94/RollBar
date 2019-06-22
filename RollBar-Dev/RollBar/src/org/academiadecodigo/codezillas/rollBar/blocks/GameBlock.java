@@ -20,8 +20,8 @@ public abstract class GameBlock implements Movable {
 
 
 
-    public GameBlock(Color color, BlockType blockType){
-        //position.setCol(); = starting position
+    public GameBlock(Color color, BlockType blockType, Position position){
+        this.position = position;
         this.color = color;
         this.blockType = blockType;
 

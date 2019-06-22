@@ -11,9 +11,10 @@ public class Position {
 
 
 
-    public Position(Grid grid){
-
-
+    public Position(int col, int row, Grid grid){
+        this.col = col;
+        this.row = row;
+        this.checkColision = new CheckColision();
         this.grid = grid;
     }
 

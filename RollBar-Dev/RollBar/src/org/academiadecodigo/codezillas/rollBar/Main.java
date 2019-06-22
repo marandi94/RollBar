@@ -1,6 +1,7 @@
 package org.academiadecodigo.codezillas.rollBar;
 
 import org.academiadecodigo.codezillas.rollBar.blocks.BlockFactory;
+import org.academiadecodigo.codezillas.rollBar.blocks.CheckColision;
 import org.academiadecodigo.codezillas.rollBar.graphics.Cube;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
@@ -11,8 +12,12 @@ public class Main {
 
          Grid grid = new Grid();
 
+         BlockFactory factory = new BlockFactory(grid);
+
         grid.init();
-        Block block = (Block) BlockFactory.chooseBlockType();
+        Block block = (Block) factory.chooseBlockType();
+        CheckColision colision = new CheckColision();
+        colision.setAllBlocks(BlockFactory.getAllBlocks());
 
         Cube test = new Cube(grid, block);
 

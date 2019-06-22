@@ -28,7 +28,9 @@ public class Cube implements KeyboardHandler {
    }
 
    private void show(){
+
       cube.fill();
+
    }
 
    private void hide(){
@@ -39,13 +41,19 @@ public class Cube implements KeyboardHandler {
       int key = keyboardEvent.getKey();
       switch (key) {
          case KeyboardEvent.KEY_LEFT:
+            gameBlock.move(Direction.LEFT);
             cube.translate(-grid.getCellSize(),0);
+            System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + gameBlock.getPosition().getRow());
             break;
          case KeyboardEvent.KEY_RIGHT:
+            gameBlock.move(Direction.RIGHT);
             cube.translate(grid.getCellSize(), 0);
+            System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + gameBlock.getPosition().getRow());
             break;
          case KeyboardEvent.KEY_DOWN:
+            gameBlock.fall();
             cube.translate(0, grid.getCellSize());
+            System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + gameBlock.getPosition().getRow());
             break;
       }
    }

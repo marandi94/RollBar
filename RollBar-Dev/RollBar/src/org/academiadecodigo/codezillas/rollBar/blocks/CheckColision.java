@@ -6,13 +6,13 @@ import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Position;
 
 public class CheckColision {
-    private GameBlock[] allBlocks;
+    private GameBlock[] allBlocks = BlockFactory.getAllBlocks();
 
     public boolean checkIfColides(Position position, Direction dir){ // podemos retornar uma position e o bloco nao mexer depois do check
 
         switch (dir){
             case LEFT:
-                Position tempPosition = new Position(position.getGrid());
+                Position tempPosition = new Position(4,4,position.getGrid());
                 tempPosition.setCol(position.getCol()-1);
                 tempPosition.setRow(position.getRow());
 
@@ -25,7 +25,7 @@ public class CheckColision {
                 }
                 break;
             case DOWN:
-                Position tempPositionDown = new Position(position.getGrid());
+                Position tempPositionDown = new Position(4,4,position.getGrid());
                 tempPositionDown.setCol(position.getCol());
                 tempPositionDown.setRow(position.getRow()+1);
                 for (GameBlock block: allBlocks){
@@ -38,7 +38,7 @@ public class CheckColision {
 
                 break;
             case RIGHT:
-                Position tempPositionRight = new Position(position.getGrid());
+                Position tempPositionRight = new Position(4,4,position.getGrid());
                 tempPositionRight.setCol(position.getCol()+1);
                 tempPositionRight.setRow(position.getRow());
                 for (GameBlock block: allBlocks){
@@ -60,6 +60,7 @@ public class CheckColision {
         return true;
     }
 
-
-
+    public void setAllBlocks(GameBlock[] allBlocks) {
+        this.allBlocks = allBlocks;
+    }
 }
