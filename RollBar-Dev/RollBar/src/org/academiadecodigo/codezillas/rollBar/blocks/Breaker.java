@@ -5,12 +5,10 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 public class Breaker extends GameBlock {
 
 
-
     public boolean checkBreak(){
 
         return true;
     }
-
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
@@ -21,4 +19,5 @@ public class Breaker extends GameBlock {
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
     }
+
 }

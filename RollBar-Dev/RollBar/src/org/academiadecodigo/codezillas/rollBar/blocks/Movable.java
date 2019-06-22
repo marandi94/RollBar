@@ -6,6 +6,6 @@ public interface Movable {
      void moveLeft();
      void moveRight();
      void drop();
-     void flip();
+     void flip(GameBlock gameBlock);
 
 }
