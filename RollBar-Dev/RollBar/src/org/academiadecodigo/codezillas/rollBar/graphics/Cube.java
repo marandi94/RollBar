@@ -1,6 +1,7 @@
 package org.academiadecodigo.codezillas.rollBar.graphics;
 
 import org.academiadecodigo.codezillas.rollBar.blocks.Block;
+import org.academiadecodigo.codezillas.rollBar.blocks.Direction;
 import org.academiadecodigo.codezillas.rollBar.blocks.GameBlock;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
 import org.academiadecodigo.simplegraphics.graphics.Color;
@@ -9,17 +10,16 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 
-public class Cube {
+public class Cube implements KeyboardHandler {
 
    private Grid grid;
    private Rectangle cube;
-   private KeyboardHandler keyboardHandler;
-
+   private GameBlock gameBlock;
 
 
    public Cube(Grid grid, Block gameblock) {
       this.grid = grid;
-      this.keyboardHandler = gameblock;
+      this.gameBlock = gameblock;
 
       cube = new Rectangle(grid.columnToX(4), grid.rowToY(0), grid.getCellSize(), grid.getCellSize());
       cube.setColor(Color.CYAN);
@@ -28,9 +28,11 @@ public class Cube {
    }
 
    private void show(){
-
       cube.fill();
+   }
 
+   private void hide(){
+      cube.delete();
    }
 
    public void keyPressed(KeyboardEvent keyboardEvent) {
@@ -47,6 +49,8 @@ public class Cube {
             break;
       }
    }
+
+
 
    public void keyReleased(KeyboardEvent keyboardEvent) {
 

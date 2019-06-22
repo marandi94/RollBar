@@ -5,24 +5,9 @@ import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
 
 public class Block extends GameBlock {
 
-    public Block(Color color, BlockType blocktype, Grid grid){
-        super(color,blocktype,grid);
+    public Block(Color color, BlockType blocktype ){
+        super(color,blocktype);
     }
-
-    @Override
-    public void keyPressed(KeyboardEvent keyboardEvent) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyboardEvent keyboardEvent) {
-
-    }
-
-
-
-
-
 
 
 }

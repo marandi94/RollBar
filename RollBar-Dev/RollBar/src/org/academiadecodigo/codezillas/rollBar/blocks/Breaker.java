@@ -4,20 +4,15 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 
 public class Breaker extends GameBlock {
 
+    public Breaker(Color color, BlockType blockType) {
+        super(color, blockType);
+    }
 
     public boolean checkBreak(){
 
         return true;
     }
 
-    @Override
-    public void keyPressed(KeyboardEvent keyboardEvent) {
 
-    }
-
-    @Override
-    public void keyReleased(KeyboardEvent keyboardEvent) {
-
-    }
 
 }

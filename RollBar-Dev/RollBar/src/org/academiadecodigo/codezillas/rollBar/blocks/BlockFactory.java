@@ -6,13 +6,12 @@ public class BlockFactory {
 
     public static GameBlock chooseBlockType(){
         GameBlock gameBlocks;
-        int random = (int) (Math.random() * 101);
-        BlockType blockType = BlockType.values()[random];
-        if (random <= 3){
+
+      /*  if (random <= 3){
             gameBlocks = new Breaker();
             return gameBlocks;
-        }
-        gameBlocks = new Block();
+        }*/
+        gameBlocks = new Block(chooseColorBlock(), BlockType.BLOCK);
 
         return gameBlocks;
         
@@ -20,7 +19,7 @@ public class BlockFactory {
 
 
 
-    public static Color chooseColorBlock(GameBlock gameBlocks){
+    public static Color chooseColorBlock(){
 
         int random = (int) (Math.random() * Color.values().length);
 

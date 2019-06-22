@@ -1,13 +1,14 @@
 package org.academiadecodigo.codezillas.rollBar.blocks;
 
 import org.academiadecodigo.codezillas.rollBar.Game;
+import org.academiadecodigo.codezillas.rollBar.graphics.Cube;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Position;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 
-public abstract class GameBlock implements Movable,KeyboardHandler {
+public abstract class GameBlock implements Movable {
 
     private Color color;
     private Grid grid;
@@ -15,15 +16,15 @@ public abstract class GameBlock implements Movable,KeyboardHandler {
     private BlockType blockType;
     private boolean destroyed;
     private boolean active;
-    private BlockPosition blockPosition;
+    private Cube blockPosition;
 
 
 
-    public GameBlock(Color color, BlockType blockType, Grid grid){
+    public GameBlock(Color color, BlockType blockType){
         //position.setCol(); = starting position
         this.color = color;
         this.blockType = blockType;
-        this.grid = grid;
+
     }
 
     public Position getPosition() {
@@ -106,15 +107,6 @@ public abstract class GameBlock implements Movable,KeyboardHandler {
             //trocar por swap!!!!
     }
 
-    @Override
-    public void keyPressed(KeyboardEvent keyboardEvent) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyboardEvent keyboardEvent) {
-
-    }
 
 
 

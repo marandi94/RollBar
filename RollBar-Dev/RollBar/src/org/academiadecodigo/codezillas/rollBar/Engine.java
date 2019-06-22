@@ -1,9 +1,10 @@
 package org.academiadecodigo.codezillas.rollBar;
 
 import org.academiadecodigo.codezillas.rollBar.blocks.GameBlock;
+import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
 
 public class Engine {
-    private Board currentBoard;
+    private Grid currentBoard;
     private GameBlock currentPiece;
 
 
