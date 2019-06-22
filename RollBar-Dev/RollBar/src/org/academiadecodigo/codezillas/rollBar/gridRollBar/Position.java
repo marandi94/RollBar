@@ -1,5 +1,6 @@
 package org.academiadecodigo.codezillas.rollBar.gridRollBar;
 
+import org.academiadecodigo.codezillas.rollBar.blocks.BlockColor;
 import org.academiadecodigo.codezillas.rollBar.blocks.CheckColision;
 
 public class Position {
@@ -30,6 +31,7 @@ public class Position {
     public void setCol(int col){
         this.col = col;
     }
+
 
     public void setRow(int row) {
         this.row = row;

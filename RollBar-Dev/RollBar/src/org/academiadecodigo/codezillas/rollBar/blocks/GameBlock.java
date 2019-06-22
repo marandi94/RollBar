@@ -1,8 +1,11 @@
 package org.academiadecodigo.codezillas.rollBar.blocks;
 
+import org.academiadecodigo.codezillas.rollBar.ColorMapper;
 import org.academiadecodigo.codezillas.rollBar.graphics.Cube;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Position;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 
 
 public abstract class GameBlock implements Movable {
@@ -15,14 +18,44 @@ public abstract class GameBlock implements Movable {
     private boolean active = true;
 
 
-
-
     public GameBlock(BlockColor color, BlockType blockType, Position position){
-        this.position = position;
-        this.color = color;
+        this.grid = grid;
+        this.position = new Position(4, 0, grid);
+
         this.blockType = blockType;
 
+
     }
+
+    public void keyPressed(KeyboardEvent keyboardEvent) {
+        int key = keyboardEvent.getKey();
+        if (!isActive()){
+            return;
+        }
+        switch (key) {
+            case KeyboardEvent.KEY_LEFT:
+                if (move(Direction.LEFT)) {
+                    translate(-grid.getCellSize(), 0);
+                    System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + gameBlock.getPosition().getRow());
+                    break;
+                }
+                break;
+            case KeyboardEvent.KEY_RIGHT:
+                if (move(Direction.RIGHT)) {
+                    cube.translate(grid.getCellSize(), 0);
+                    System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + getPosition().getRow());
+                    break;
+                }
+                break;
+            case KeyboardEvent.KEY_DOWN:
+                if (fall()) {
+
+                    System.out.println("GAMEBlock" + getPosition().getCol() + " " + getPosition().getRow());
+                    break;
+                }
+        }
+    }
+
 
     public Position getPosition() {
         return position;
@@ -98,7 +131,11 @@ public abstract class GameBlock implements Movable {
 
     }
 
+    public void setColor(BlockColor color){
 
+        color.equals(ColorMapper.getColor(color));
+
+    }
 
 
 
