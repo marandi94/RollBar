@@ -1,10 +1,10 @@
 package org.academiadecodigo.codezillas.rollBar;
 
-import org.academiadecodigo.codezillas.rollBar.gridRollBar.Board;
+import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
 
 public class Game {
     private Player[] players;
-    private Board gameBoard;
+    private Grid gameBoard;
     private Engine gameEngine;
 
 

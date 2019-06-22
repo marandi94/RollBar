@@ -1,18 +1,28 @@
 package org.academiadecodigo.codezillas.rollBar.blocks;
 
+import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
+import org.academiadecodigo.codezillas.rollBar.gridRollBar.Position;
+
 public class BlockFactory {
+    private static GameBlock[] allBlocks = new GameBlock[20];
+    private static int counter;
+    private Grid grid;
 
+    public BlockFactory(Grid grid){
+        this.grid = grid;
+    }
 
-
-    public static GameBlock chooseBlockType(){
+    public  GameBlock chooseBlockType(){
         GameBlock gameBlocks;
-        int random = (int) (Math.random() * 101);
-        BlockType blockType = BlockType.values()[random];
-        if (random <= 3){
+
+      /*  if (random <= 3){
             gameBlocks = new Breaker();
             return gameBlocks;
-        }
-        gameBlocks = new Block();
+        }*/
+        Position initialPos = new Position(4,0,grid );
+        gameBlocks = new Block(chooseColorBlock(), BlockType.BLOCK, initialPos);
+        allBlocks[counter] = gameBlocks;
+        counter++;
 
         return gameBlocks;
         
@@ -20,7 +30,7 @@ public class BlockFactory {
 
 
 
-    public static Color chooseColorBlock(GameBlock gameBlocks){
+    public static Color chooseColorBlock(){
 
         int random = (int) (Math.random() * Color.values().length);
 
@@ -47,10 +57,11 @@ public class BlockFactory {
 
     }
 
+    public static GameBlock[] getAllBlocks() {
+        return allBlocks;
+    }
 
-
-
-/*
+    /*
     public Block makeBlock(){
 
         return ;
