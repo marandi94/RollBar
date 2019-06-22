@@ -13,7 +13,7 @@ public abstract class GameBlock implements Movable {
     private BlockType blockType;
     private boolean destroyed;
     private boolean active = true;
-    private Cube blockPosition;
+
 
 
 
@@ -109,6 +109,18 @@ public abstract class GameBlock implements Movable {
     @Override
     public void flip(GameBlock gameBlock) {
             //trocar por swap!!!!
+    }
+
+    public int getCol(){
+
+        return position.getCol();
+
+    }
+
+    public int getRow(){
+
+       return position.getRow();
+
     }
 
 

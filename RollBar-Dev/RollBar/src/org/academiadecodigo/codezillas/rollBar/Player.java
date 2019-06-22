@@ -1,6 +1,7 @@
 package org.academiadecodigo.codezillas.rollBar;
 
 import org.academiadecodigo.codezillas.rollBar.blocks.GameBlock;
+import org.academiadecodigo.codezillas.rollBar.graphics.Cube;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -12,6 +13,7 @@ public class Player {
     private Keyboard keyboard;
     private String name;
     private GameBlock currentPiece;
+    private Cube cube;
 
     public void moveLeft(){
 
@@ -25,9 +27,9 @@ public class Player {
 
     }
 
-    public void initKeyboard(KeyboardHandler handler) {
+    public void initKeyboard(KeyboardHandler currentPiece) {
 
-        Keyboard keyboard = new Keyboard(handler);
+        Keyboard keyboard = new Keyboard(currentPiece);
 
         KeyboardEvent moveLeft = new KeyboardEvent();
         moveLeft.setKey(KeyboardEvent.KEY_LEFT);
@@ -46,4 +48,19 @@ public class Player {
         keyboard.addEventListener(moveDown);
     }
 
+    public void setCube(Cube cube) {
+        this.cube = cube;
+    }
+
+    public void setCurrentPiece(GameBlock currentPiece) {
+        this.currentPiece = currentPiece;
+    }
+
+    public GameBlock getCurrentPiece() {
+        return currentPiece;
+    }
+
+    public Cube getCube() {
+        return cube;
+    }
 }
