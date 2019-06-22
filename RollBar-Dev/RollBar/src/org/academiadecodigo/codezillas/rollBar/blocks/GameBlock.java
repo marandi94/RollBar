@@ -62,44 +62,19 @@ public abstract class GameBlock implements Movable {
     }
 
 
-    public boolean fall() {
-        if (position.getCheckColision().checkIfColides(position,Direction.DOWN)){
-            setActive(false); // desativar bloco aqui??
-            return false;
-        }
-        position.setRow(position.getRow() + 1);
-        return true;
-    }
-
     @Override
     public void moveLeft() {
-
-        if (position.getCheckColision().checkIfColides(position,Direction.LEFT)) {
-            return;
-
-        }
         position.setCol(position.getCol() - 1);
     }
 
     @Override
     public void moveRight() {
-        if (position.getCheckColision().checkIfColides(position,Direction.RIGHT)) {
-           return;
-        }
         position.setCol(position.getCol() + 1);
     }
 
-
-
-
-
     @Override
     public void drop() {
-        if (position.getCheckColision().checkIfColides(position, Direction.DOWN)){
-            return;
-        }
         position.setRow(position.getRow() + 1);
-        // Feature space bar drops the piece
     }
 
     public void setDestroyed(){
