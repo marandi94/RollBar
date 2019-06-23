@@ -6,7 +6,6 @@ import org.academiadecodigo.codezillas.rollBar.blocks.Direction;
 import org.academiadecodigo.codezillas.rollBar.blocks.GameBlock;
 import org.academiadecodigo.codezillas.rollBar.graphics.Cube;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
-import org.academiadecodigo.codezillas.rollBar.blocks.Direction;
 
 
 public class Game {
@@ -21,7 +20,7 @@ public class Game {
         this.gameBoard = new Grid();
         this.gameEngine = gameEngine;
         this.matrix = new GameBlock[gameBoard.getCols()][gameBoard.getRows()+1];
-        this.delay = 500;
+        this.delay = 400;
         gameBoard.init();
     }
 
@@ -40,18 +39,22 @@ public class Game {
             players[0].setCube(BlockFactory.createCube(gameBoard));
 
             Cube activeCube = players[0].getCube();
-            GameBlock activeBlock = activeCube.getGameBlock();
+            GameBlock activeBlock = activeCube.getMasterBlock();
             players[0].setCurrentPiece(activeBlock);
             players[0].initKeyboard(activeCube);
 
-            while (activeCube.getGameBlock().isActive()) {
+            while (activeCube.getMasterBlock().isActive()) {
                 System.out.println("check 1");
+
                 if (CheckColision.checkIfColides(activeBlock.getPosition(),Direction.DOWN)) {
-                    setBlockIndex(activeBlock);
-                    setBlockIndex(activeBlock.getSlave());
+
+                    System.out.println("SLAVE " + " RoW " + activeCube.getMasterBlock().getSlave().getPosition().getRow() + " COLOR " + activeCube.getMasterBlock().getSlave().getColor());
+                    System.out.println("MASTER " + " ROW " + activeCube.getMasterBlock().getPosition().getRow() + " Color " + activeCube.getMasterBlock().getColor());
                     activeBlock.setActive(false);
                     activeBlock.getSlave().setActive(false);
 
+                    setBlockIndex(activeBlock);
+                    setSlaveIndex(activeBlock);
                     System.out.println("check 2");
                 }
 

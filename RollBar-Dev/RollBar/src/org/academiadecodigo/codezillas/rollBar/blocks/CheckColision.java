@@ -25,7 +25,7 @@ public class CheckColision {
             case DOWN:
 
                 Position tempPositionDown = new Position(position.getCol(),position.getRow()+1,position.getGrid());
-                if(tempPositionDown.getRow() == 16 ){
+                if(tempPositionDown.getRow() == 17 ){
                     return true;
                 }
                 if(matrix[position.getCol()][position.getRow()+1] != null){
