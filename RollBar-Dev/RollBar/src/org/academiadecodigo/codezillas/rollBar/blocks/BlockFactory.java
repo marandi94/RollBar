@@ -1,6 +1,8 @@
 package org.academiadecodigo.codezillas.rollBar.blocks;
 
 import org.academiadecodigo.codezillas.rollBar.Game;
+import org.academiadecodigo.codezillas.rollBar.PuyoBreaker;
+import org.academiadecodigo.codezillas.rollBar.PuyoRectangle;
 import org.academiadecodigo.codezillas.rollBar.graphics.Cube;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Position;
@@ -24,7 +26,7 @@ public abstract class BlockFactory {
     private static BlockType chooseBlockType() {
 
         int random = (int) Math.floor(Math.random() * 100);
-        if (random <= 3) {
+        if (random <= 4) {
             return BlockType.BREAKER;
         }
         return BlockType.BLOCK;
@@ -54,20 +56,32 @@ public abstract class BlockFactory {
     public static GameBlock create() {
 
         BlockType blockType = chooseBlockType();
+        BlockType blockType1 = chooseBlockType();
+        GameBlock master;
+        GameBlock slave;
         Position initialPos = new Position(4, 1, grid);
-        Position initialPos2 = new Position(4, 0, grid);
+        Position initialPos1 = new Position(4, 0, grid);
 
-        GameBlock block = new Block(chooseColorBlock(), blockType, initialPos);
-        GameBlock slave = new Block(chooseColorBlock(), blockType, initialPos2);
+        if (blockType == BlockType.BREAKER) {
+            master = new Breaker(chooseColorBlock(), blockType, initialPos);
+        }else {
+            master = new Block(chooseColorBlock(), blockType, initialPos);
+        }
+
+        if(blockType1 == BlockType.BREAKER){
+            slave = new Breaker(chooseColorBlock(), blockType1, initialPos1);
+        } else {
+            slave = new Block(chooseColorBlock(), blockType1, initialPos1);
+        }
+
         System.out.println("here i am!");
-        block.setSlave(slave);
+        master.setSlave(slave);
         counter++;
-        return block;
-
-
+        return master;
     }
-}
 
+
+}
     /*
     public Block makeBlock(){
 

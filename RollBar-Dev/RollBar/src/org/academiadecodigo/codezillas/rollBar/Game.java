@@ -20,7 +20,7 @@ public class Game {
         this.gameBoard = new Grid();
         this.gameEngine = gameEngine;
         this.matrix = new GameBlock[gameBoard.getCols()][gameBoard.getRows()+1];
-        this.delay = 400;
+        this.delay = 50;
         gameBoard.init();
     }
 
