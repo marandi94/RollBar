@@ -20,7 +20,7 @@ public class Game {
         this.gameBoard = new Grid();
         this.gameEngine = gameEngine;
         this.matrix = new GameBlock[gameBoard.getCols()][gameBoard.getRows()+1];
-        this.delay = 400;
+        this.delay = 50;
         gameBoard.init();
     }
 
@@ -36,12 +36,18 @@ public class Game {
         //thread things
 
         while(true) {
+
             players[0].setCube(BlockFactory.createCube(gameBoard));
+
 
             Cube activeCube = players[0].getCube();
             GameBlock activeBlock = activeCube.getMasterBlock();
             players[0].setCurrentPiece(activeBlock);
             players[0].initKeyboard(activeCube);
+            if(gameOver()){
+                System.out.println("Game Over");
+                return;
+            }
 
             while (activeCube.getMasterBlock().isActive()) {
                 System.out.println("check 1");
@@ -53,6 +59,7 @@ public class Game {
                     activeBlock.setActive(false);
                     activeBlock.getSlave().setActive(false);
 
+
                     setBlockIndex(activeBlock);
                     setSlaveIndex(activeBlock);
                     System.out.println("check 2");
@@ -62,19 +69,32 @@ public class Game {
                 activeCube.fall(activeBlock.fall());
                 System.out.println("check final");
 
+
             }
         }
         //elevator music
 
     }
 
+    public boolean gameOver(){
+
+        Cube activeCube = players[0].getCube();
+        GameBlock activeBlock = activeCube.getMasterBlock();
+
+
+        if(activeBlock.getPosition().getRow() == 1 && CheckColision.checkIfColides(activeBlock.getPosition(), Direction.DOWN)== true){
+            return true;
+        }
+        return false;
+
+    }
+
     public boolean isOccupied(GameBlock block){
 
-
-            if (matrix[block.getCol()][block.getRow() + 1] != null){
-                return true;
+        if (matrix[block.getCol()][block.getRow() + 1] != null){
+            return true;
         }
-            return false;
+        return false;
 
     }
 
