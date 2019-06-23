@@ -1,14 +1,10 @@
 package org.academiadecodigo.codezillas.rollBar.graphics;
 
-import org.academiadecodigo.codezillas.rollBar.Breakable;
-import org.academiadecodigo.codezillas.rollBar.ColorMapper;
-import org.academiadecodigo.codezillas.rollBar.PuyoBreaker;
-import org.academiadecodigo.codezillas.rollBar.PuyoRectangle;
-import org.academiadecodigo.codezillas.rollBar.blocks.BlockColor;
-import org.academiadecodigo.codezillas.rollBar.blocks.BlockType;
-import org.academiadecodigo.codezillas.rollBar.blocks.Direction;
-import org.academiadecodigo.codezillas.rollBar.blocks.GameBlock;
+import org.academiadecodigo.codezillas.rollBar.*;
+import org.academiadecodigo.codezillas.rollBar.blocks.*;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
+import org.academiadecodigo.codezillas.rollBar.gridRollBar.Position;
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
@@ -147,4 +143,83 @@ public class Cube implements KeyboardHandler {
       return masterBlock;
    }
 
+
+   public void search(BlockColor color){
+      for(int i = 0; i < Game.getMatrix().length; i++){
+         for(int j = 0; j < Game.getMatrix()[i].length; j++){
+            if(Game.getMatrix()[i][j] == null){
+               continue;
+            }
+            if(color.equals(Game.getMatrix()[i][j].getColor())){
+               System.out.println("BOOM");
+            }
+         }
+      }
+
+
+
+
+
+   }
+
+
+
+
+
+ /* public void search(Position position){
+      System.out.println(position.getCol() + " " + position.getRow());
+      //Game.getMatrix()[position.getCol()][position.getRow()].setVisited(true);
+
+     if (position.getRow() - 1 > 0 // relative search UP
+             && Game.getMatrix()[position.getCol()][position.getRow() - 1] != null
+             && Game.getMatrix()[position.getCol()][position.getRow() - 1].getColor() == Game.getMatrix()[position.getCol()][position.getRow()].getColor()
+             && (Game.getMatrix()[position.getCol()][position.getRow() - 1].isVisited() )== false) {
+        Position tempPosition4 = new Position(position.getCol() + 0 , position.getRow() - 1, Game.getGameBoard());
+        Game.getMatrix()[position.getCol()][position.getRow()].setVisited(true);
+        search(tempPosition4);
+     }
+         if (position.getCol() + 1 < 9 // relative search Right)
+                 && Game.getMatrix()[position.getCol() + 1][position.getRow()] != null
+                 && Game.getMatrix()[position.getCol() + 1][position.getRow()].getColor() == Game.getMatrix()[position.getCol()][position.getRow()].getColor()
+         && (Game.getMatrix()[position.getCol() + 1][position.getRow()].isVisited() )== false){
+            Position tempPosition1 = new Position(position.getCol() + 1, position.getRow() + 0, Game.getGameBoard());
+            Game.getMatrix()[position.getCol()][position.getRow()].setVisited(true);
+            search(tempPosition1);
+         }
+          if (position.getRow() + 1 < 17 // relative search Down
+                  && Game.getMatrix()[position.getCol()][position.getRow() + 1] != null
+                 && Game.getMatrix()[position.getCol()][position.getRow() + 1].getColor() == Game.getMatrix()[position.getCol()][position.getRow()].getColor()
+               && (Game.getMatrix()[position.getCol()][position.getRow() + 1].isVisited() ) == false) {
+            Position tempPosition2 = new Position(position.getCol() + 0, position.getRow() + 1, Game.getGameBoard());
+             Game.getMatrix()[position.getCol()][position.getRow()].setVisited(true);
+            search(tempPosition2);
+         }
+         if (position.getCol() > 0 // relative search Left
+                 && Game.getMatrix()[position.getCol() - 1][position.getRow()] != null
+                 && Game.getMatrix()[position.getCol() - 1][position.getRow()].getColor() == Game.getMatrix()[position.getCol()][position.getRow()].getColor()
+                 && (Game.getMatrix()[position.getCol() - 1][position.getRow()].isVisited() )== false) {
+            Position tempPosition3 = new Position(position.getCol() - 1, position.getRow() + 0, Game.getGameBoard());
+            Game.getMatrix()[position.getCol()][position.getRow()].setVisited(true);
+            search(tempPosition3);
+         }
+
+      System.out.println("BOOOOOMMMM!!!!!!");
+
+
+
+
+
+      //Game.getMatrix()[position.getCol()][position.getRow()].delete();
+
+      //DESTROY HERE AND RETURN
+   } */
+
+
+
+
 }
+
+
+
+
+

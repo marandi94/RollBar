@@ -15,6 +15,7 @@ public abstract class GameBlock implements Movable, KeyboardHandler {
     private boolean destroyed;
     private boolean active = true;
     private GameBlock slave;
+    private boolean visited;
 
 
 
@@ -164,4 +165,13 @@ public abstract class GameBlock implements Movable, KeyboardHandler {
     public BlockType getBlockType(){
         return blockType;
     }
+
+    public boolean isVisited() {
+        return visited;
+    }
+
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
+
 }

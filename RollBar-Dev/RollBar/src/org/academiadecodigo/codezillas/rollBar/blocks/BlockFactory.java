@@ -26,7 +26,7 @@ public abstract class BlockFactory {
     private static BlockType chooseBlockType() {
 
         int random = (int) Math.floor(Math.random() * 100);
-        if (random <= 4) {
+        if (random <= 20) {
             return BlockType.BREAKER;
         }
         return BlockType.BLOCK;
@@ -73,7 +73,8 @@ public abstract class BlockFactory {
         } else {
             slave = new Block(chooseColorBlock(), blockType1, initialPos1);
         }
-
+        System.out.println("SLAVE COLOR " + " "  + slave.getColor());
+        System.out.println("MASTER COLOR " + master.getColor());
         System.out.println("here i am!");
         master.setSlave(slave);
         counter++;
