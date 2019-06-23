@@ -21,7 +21,7 @@ public class Game {
         this.gameBoard = new Grid();
         this.gameEngine = gameEngine;
         this.matrix = new GameBlock[gameBoard.getCols()][gameBoard.getRows()+1];
-        this.delay = 200;
+        this.delay = 500;
         gameBoard.init();
     }
 
@@ -34,10 +34,7 @@ public class Game {
 
            //start
 
-
-
         //thread things
-
 
         while(true) {
             players[0].setCube(BlockFactory.createCube(gameBoard));
@@ -51,7 +48,10 @@ public class Game {
                 System.out.println("check 1");
                 if (CheckColision.checkIfColides(activeBlock.getPosition(),Direction.DOWN)) {
                     setBlockIndex(activeBlock);
+                    setBlockIndex(activeBlock.getSlave());
                     activeBlock.setActive(false);
+                    activeBlock.getSlave().setActive(false);
+
                     System.out.println("check 2");
                 }
 
@@ -62,7 +62,6 @@ public class Game {
             }
         }
         //elevator music
-
 
     }
 
@@ -75,8 +74,6 @@ public class Game {
             return false;
 
     }
-
-
 
     public Grid getGameBoard() {
         return gameBoard;
@@ -91,6 +88,11 @@ public class Game {
     public void setBlockIndex(GameBlock active){
 
         this.matrix[active.getCol()][active.getRow()] = active;
+
+    }
+    public void setSlaveIndex(GameBlock active){
+
+        this.matrix[active.getSlave().getCol()][active.getSlave().getRow()] = active;
 
     }
 

@@ -141,6 +141,10 @@ public abstract class GameBlock implements Movable, KeyboardHandler {
         this.slave = slave;
     }
 
+    public GameBlock getSlave() {
+        return slave;
+    }
+
     public BlockColor getColor() {
         return color;
     }
