@@ -54,8 +54,8 @@ public abstract class BlockFactory {
     public static GameBlock create() {
 
         BlockType blockType = chooseBlockType();
-        Position initialPos = new Position(4, 0, grid);
-        Position initialPos2 = new Position(4, -1, grid);
+        Position initialPos = new Position(4, 1, grid);
+        Position initialPos2 = new Position(4, 0, grid);
 
         GameBlock block = new Block(chooseColorBlock(), blockType, initialPos);
         GameBlock slave = new Block(chooseColorBlock(), blockType, initialPos2);
