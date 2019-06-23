@@ -28,6 +28,9 @@ public class Cube implements KeyboardHandler {
       this.swapedMaster = slaveBlock;
       this.swapedSlave = masterBlock;
 
+
+
+
       slave = new Rectangle(grid.columnToX(4), grid.rowToY(-1), grid.getCellSize(), grid.getCellSize());
       master = new Rectangle(grid.columnToX(4), grid.rowToY(0), grid.getCellSize(), grid.getCellSize());
       master.setColor(ColorMapper.getColor(gameblock.getColor()));

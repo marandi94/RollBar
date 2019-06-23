@@ -160,4 +160,8 @@ public abstract class GameBlock implements Movable, KeyboardHandler {
     public void setColor(BlockColor color) {
         this.color = color;
     }
+
+    public BlockType getBlockType() {
+        return blockType;
+    }
 }
