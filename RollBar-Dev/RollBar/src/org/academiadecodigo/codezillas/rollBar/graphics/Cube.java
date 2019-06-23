@@ -1,7 +1,11 @@
 package org.academiadecodigo.codezillas.rollBar.graphics;
 
+import org.academiadecodigo.codezillas.rollBar.Breakable;
 import org.academiadecodigo.codezillas.rollBar.ColorMapper;
+import org.academiadecodigo.codezillas.rollBar.PuyoBreaker;
+import org.academiadecodigo.codezillas.rollBar.PuyoRectangle;
 import org.academiadecodigo.codezillas.rollBar.blocks.BlockColor;
+import org.academiadecodigo.codezillas.rollBar.blocks.BlockType;
 import org.academiadecodigo.codezillas.rollBar.blocks.Direction;
 import org.academiadecodigo.codezillas.rollBar.blocks.GameBlock;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
@@ -13,12 +17,13 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 public class Cube implements KeyboardHandler {
 
    private Grid grid;
-   private Rectangle master;
-   private Rectangle slave;
+   private Breakable master;
+   private Breakable slave;
    private GameBlock masterBlock;
    private GameBlock slaveBlock;
    private GameBlock swapedMaster;
    private GameBlock swapedSlave;
+   private BlockType blockType;
    private boolean swap;
 
    public Cube(Grid grid, GameBlock gameblock) {
@@ -28,16 +33,32 @@ public class Cube implements KeyboardHandler {
       this.swapedMaster = slaveBlock;
       this.swapedSlave = masterBlock;
 
+      greatThings(masterBlock, slaveBlock);
 
-
-
-      slave = new Rectangle(grid.columnToX(4), grid.rowToY(-1), grid.getCellSize(), grid.getCellSize());
-      master = new Rectangle(grid.columnToX(4), grid.rowToY(0), grid.getCellSize(), grid.getCellSize());
+   //   slave = new PuyoRectangle(grid.columnToX(4), grid.rowToY(-1), grid.getCellSize(), grid.getCellSize());
+     // master = new PuyoRectangle(grid.columnToX(4), grid.rowToY(0), grid.getCellSize(), grid.getCellSize());
       master.setColor(ColorMapper.getColor(gameblock.getColor()));
       slave.setColor(ColorMapper.getColor(slaveBlock.getColor()));
       show();
 
    }
+
+   public void greatThings(GameBlock masterBlock, GameBlock slaveBlock){
+      if (masterBlock.getBlockType() == BlockType.BREAKER){
+         this.master = new PuyoBreaker(grid.columnToX(4), grid.rowToY(0), grid.getCellSize(), grid.getCellSize());
+      } else if (masterBlock.getBlockType() == BlockType.BLOCK) {
+         this.master = new PuyoRectangle(grid.columnToX(4), grid.rowToY(0), grid.getCellSize(), grid.getCellSize());
+      }
+      if (slaveBlock.getBlockType() == BlockType.BREAKER){
+         this.slave = new PuyoBreaker(grid.columnToX(4), grid.rowToY(-1), grid.getCellSize(), grid.getCellSize());
+      } else if (slaveBlock.getBlockType() == BlockType.BLOCK) {
+         this.slave = new PuyoRectangle(grid.columnToX(4), grid.rowToY(-1), grid.getCellSize(), grid.getCellSize());
+      }
+
+
+   }
+
+
 
    private void show(){
 
@@ -118,7 +139,7 @@ public class Cube implements KeyboardHandler {
       }
    }
 
-   public Rectangle getMaster() {
+   public Breakable getMaster() {
       return master;
    }
 

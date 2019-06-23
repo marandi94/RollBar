@@ -161,7 +161,7 @@ public abstract class GameBlock implements Movable, KeyboardHandler {
         this.color = color;
     }
 
-    public BlockType getBlockType() {
+    public BlockType getBlockType(){
         return blockType;
     }
 }
