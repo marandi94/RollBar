@@ -14,9 +14,18 @@ public abstract class GameBlock implements Movable, KeyboardHandler {
     private BlockType blockType;
     private boolean destroyed;
     private boolean active = true;
+    private GameBlock slave;
 
 
 
+
+    public GameBlock(BlockColor color, BlockType blockType, Position position, GameBlock slave){
+        this.position = position;
+        this.color = color;
+        this.blockType = blockType;
+        this.slave = slave;
+
+    }
 
     public GameBlock(BlockColor color, BlockType blockType, Position position){
         this.position = position;
@@ -25,6 +34,8 @@ public abstract class GameBlock implements Movable, KeyboardHandler {
 
 
     }
+
+
 
     public Position getPosition() {
         return position;
@@ -50,12 +61,14 @@ public abstract class GameBlock implements Movable, KeyboardHandler {
 
                   }
                 moveRight();
+                slave.moveRight();
                 return true;
             case LEFT:
                 if(position.getCheckColision().checkIfColides(position,Direction.LEFT)){
                    return false;
                  }
                 moveLeft();
+                slave.moveLeft();
                 return true;
         }
 
@@ -67,9 +80,11 @@ public abstract class GameBlock implements Movable, KeyboardHandler {
     public boolean fall() {
         if (position.getCheckColision().checkIfColides(position,Direction.DOWN)){
             setActive(false); // desativar bloco aqui??
+            slave.setActive(false);
             return false;
         }
         position.setRow(position.getRow() + 1);
+        slave.drop();
         return true;
     }
 
@@ -122,8 +137,15 @@ public abstract class GameBlock implements Movable, KeyboardHandler {
     }
 
 
+    public void setSlave(GameBlock slave) {
+        this.slave = slave;
+    }
 
+    public GameBlock getSlave() {
+        return slave;
+    }
 
-
-
+    public BlockColor getColor() {
+        return color;
+    }
 }
