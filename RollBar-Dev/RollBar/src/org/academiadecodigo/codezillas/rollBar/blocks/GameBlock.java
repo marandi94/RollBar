@@ -62,6 +62,8 @@ public abstract class GameBlock implements Movable, KeyboardHandler {
                   }
                 moveRight();
                 slave.moveRight();
+                System.out.println("Master" + this.getPosition().getCol() + " " + this.getPosition().getRow());
+                System.out.println("Slave" + slave.getPosition().getCol() + " " + slave.getPosition().getRow());
                 return true;
             case LEFT:
                 if(position.getCheckColision().checkIfColides(position,Direction.LEFT)){
@@ -69,6 +71,8 @@ public abstract class GameBlock implements Movable, KeyboardHandler {
                  }
                 moveLeft();
                 slave.moveLeft();
+                System.out.println("Master" + this.getPosition().getCol() + " " + this.getPosition().getRow());
+                System.out.println("Slave" + slave.getPosition().getCol() + " " + slave.getPosition().getRow());
                 return true;
         }
 
@@ -81,10 +85,14 @@ public abstract class GameBlock implements Movable, KeyboardHandler {
         if (position.getCheckColision().checkIfColides(position,Direction.DOWN)){
             setActive(false); // desativar bloco aqui??
             slave.setActive(false);
+            System.out.println("Master" + this.getPosition().getCol() + " " + this.getPosition().getRow());
+            System.out.println("Slave" + slave.getPosition().getCol() + " " + slave.getPosition().getRow());
             return false;
         }
         position.setRow(position.getRow() + 1);
         slave.drop();
+        System.out.println("Master" + this.getPosition().getCol() + " " + this.getPosition().getRow());
+        System.out.println("Slave" + slave.getPosition().getCol() + " " + slave.getPosition().getRow());
         return true;
     }
 

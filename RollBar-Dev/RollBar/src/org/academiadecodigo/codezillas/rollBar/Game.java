@@ -21,7 +21,7 @@ public class Game {
         this.gameBoard = new Grid();
         this.gameEngine = gameEngine;
         this.matrix = new GameBlock[gameBoard.getCols()][gameBoard.getRows()+1];
-        this.delay = 500;
+        this.delay = 400;
         gameBoard.init();
     }
 
@@ -46,12 +46,12 @@ public class Game {
 
             while (activeCube.getGameBlock().isActive()) {
                 System.out.println("check 1");
+
                 if (CheckColision.checkIfColides(activeBlock.getPosition(),Direction.DOWN)) {
-                    setBlockIndex(activeBlock);
-                    setBlockIndex(activeBlock.getSlave());
                     activeBlock.setActive(false);
                     activeBlock.getSlave().setActive(false);
-
+                    setBlockIndex(activeBlock);
+                    setSlaveIndex(activeBlock);
                     System.out.println("check 2");
                 }
 

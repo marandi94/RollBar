@@ -6,6 +6,7 @@ import org.academiadecodigo.codezillas.rollBar.blocks.BlockFactory;
 import org.academiadecodigo.codezillas.rollBar.blocks.Direction;
 import org.academiadecodigo.codezillas.rollBar.blocks.GameBlock;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
+import org.academiadecodigo.codezillas.rollBar.gridRollBar.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -65,6 +66,7 @@ public class Cube implements KeyboardHandler {
             if (gameBlock.move(Direction.RIGHT)) {
                cube.translate(grid.getCellSize(), 0);
                slave.translate(grid.getCellSize(), 0);
+
                System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + gameBlock.getPosition().getRow());
                break;
             }
@@ -73,11 +75,13 @@ public class Cube implements KeyboardHandler {
                if(!swap) {
                   cube.translate(0, -grid.getCellSize());
                   slave.translate(0, grid.getCellSize());
+                  System.out.println("SWAP");
                   this.swap = true;
                   break;
                }
                cube.translate(0, grid.getCellSize());
                slave.translate(0, -grid.getCellSize());
+               System.out.println("SWAP");
                this.swap = false;
                break;
       }
