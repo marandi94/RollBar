@@ -26,7 +26,7 @@ public abstract class BlockFactory {
     private static BlockType chooseBlockType() {
 
         int random = (int) Math.floor(Math.random() * 100);
-        if (random <= 4) {
+        if (random <= 53) {
             return BlockType.BREAKER;
         }
         return BlockType.BLOCK;
@@ -69,9 +69,9 @@ public abstract class BlockFactory {
         }
 
         if(blockType1 == BlockType.BREAKER){
-            slave = new Breaker(chooseColorBlock(), blockType1, initialPos1);
+            slave = new Breaker(chooseColorBlock(), blockType, initialPos1);
         } else {
-            slave = new Block(chooseColorBlock(), blockType1, initialPos1);
+            slave = new Block(chooseColorBlock(), blockType, initialPos1);
         }
 
         System.out.println("here i am!");
