@@ -14,12 +14,13 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
         public Grid(){
 
             canvas = new Rectangle(PADDING,PADDING,cols*CELL_SIZE,rows*CELL_SIZE);
-
         }
         public void init() {
 
-            canvas.setColor(Color.GRAY);
+            canvas.setColor(Color.BLACK);
+
             canvas.draw();
+            canvas.fill();
 
         }
 

@@ -61,7 +61,8 @@ public class Cube implements KeyboardHandler {
 
 
    private void show(){
-
+      master.draw();
+      slave.draw();
       master.fill();
       slave.fill();
 
