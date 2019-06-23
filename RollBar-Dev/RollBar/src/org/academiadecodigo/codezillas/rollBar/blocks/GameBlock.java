@@ -3,9 +3,10 @@ package org.academiadecodigo.codezillas.rollBar.blocks;
 import org.academiadecodigo.codezillas.rollBar.graphics.Cube;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Position;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 
-public abstract class GameBlock implements Movable {
+public abstract class GameBlock implements Movable, KeyboardHandler {
 
     private BlockColor color;
     private Grid grid;
@@ -13,16 +14,28 @@ public abstract class GameBlock implements Movable {
     private BlockType blockType;
     private boolean destroyed;
     private boolean active = true;
+    private GameBlock slave;
 
 
 
+
+    public GameBlock(BlockColor color, BlockType blockType, Position position, GameBlock slave){
+        this.position = position;
+        this.color = color;
+        this.blockType = blockType;
+        this.slave = slave;
+
+    }
 
     public GameBlock(BlockColor color, BlockType blockType, Position position){
         this.position = position;
         this.color = color;
         this.blockType = blockType;
 
+
     }
+
+
 
     public Position getPosition() {
         return position;
@@ -48,12 +61,14 @@ public abstract class GameBlock implements Movable {
 
                   }
                 moveRight();
+                slave.moveRight();
                 return true;
             case LEFT:
                 if(position.getCheckColision().checkIfColides(position,Direction.LEFT)){
                    return false;
                  }
                 moveLeft();
+                slave.moveLeft();
                 return true;
         }
 
@@ -65,9 +80,11 @@ public abstract class GameBlock implements Movable {
     public boolean fall() {
         if (position.getCheckColision().checkIfColides(position,Direction.DOWN)){
             setActive(false); // desativar bloco aqui??
+            slave.setActive(false);
             return false;
         }
         position.setRow(position.getRow() + 1);
+        slave.drop();
         return true;
     }
 
@@ -88,10 +105,6 @@ public abstract class GameBlock implements Movable {
         }
         position.setCol(position.getCol() + 1);
     }
-
-
-
-
 
     @Override
     public void drop() {
@@ -123,6 +136,10 @@ public abstract class GameBlock implements Movable {
 
     }
 
+
+    public void setSlave(GameBlock slave) {
+        this.slave = slave;
+    }
 
     public BlockColor getColor() {
         return color;

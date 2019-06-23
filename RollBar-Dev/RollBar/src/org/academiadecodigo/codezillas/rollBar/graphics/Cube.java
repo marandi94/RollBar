@@ -15,27 +15,27 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 public class Cube implements KeyboardHandler {
 
    private Grid grid;
-   private Rectangle block;
+   private Rectangle cube;
    private GameBlock gameBlock;
 
    public Cube(Grid grid, GameBlock gameblock) {
       this.grid = grid;
       this.gameBlock = gameblock;
 
-      block = new Rectangle(grid.columnToX(4), grid.rowToY(0), grid.getCellSize(), grid.getCellSize());
-      block.setColor(ColorMapper.getColor(gameblock.getColor()));
+      cube = new Rectangle(grid.columnToX(4), grid.rowToY(0), grid.getCellSize(), grid.getCellSize());
+      cube.setColor(ColorMapper.getColor(gameblock.getColor()));
       show();
 
    }
 
    private void show(){
 
-      block.fill();
+      cube.fill();
 
    }
 
    private void hide(){
-      block.delete();
+      cube.delete();
    }
 
    public void keyPressed(KeyboardEvent keyboardEvent) {
@@ -46,14 +46,16 @@ public class Cube implements KeyboardHandler {
       switch (key) {
          case KeyboardEvent.KEY_LEFT:
             if (gameBlock.move(Direction.LEFT)) {
-               block.translate(-grid.getCellSize(), 0);
+               cube.translate(-grid.getCellSize(), 0);
+
                System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + gameBlock.getPosition().getRow());
                break;
             }
             break;
          case KeyboardEvent.KEY_RIGHT:
             if (gameBlock.move(Direction.RIGHT)) {
-               block.translate(grid.getCellSize(), 0);
+               cube.translate(grid.getCellSize(), 0);
+
                System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + gameBlock.getPosition().getRow());
                break;
             }
@@ -64,17 +66,19 @@ public class Cube implements KeyboardHandler {
 
    public void keyReleased(KeyboardEvent keyboardEvent) {
 
+
+
    }
 
    public void fall(boolean bool){
       if(bool) {
-         block.translate(0, grid.getCellSize());
+         cube.translate(0, grid.getCellSize());
 
       }
    }
 
    public Rectangle getCube() {
-      return block;
+      return cube;
    }
 
    public GameBlock getGameBlock() {
