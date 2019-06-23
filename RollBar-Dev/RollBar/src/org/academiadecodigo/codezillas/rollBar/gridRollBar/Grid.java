@@ -15,6 +15,7 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
             canvas = new Rectangle(PADDING,PADDING,cols*CELL_SIZE,rows*CELL_SIZE);
 
+
         }
         public void init() {
 

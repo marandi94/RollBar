@@ -1,9 +1,6 @@
 package org.academiadecodigo.codezillas.rollBar.graphics;
 
-import org.academiadecodigo.codezillas.rollBar.Breakable;
-import org.academiadecodigo.codezillas.rollBar.ColorMapper;
-import org.academiadecodigo.codezillas.rollBar.PuyoBreaker;
-import org.academiadecodigo.codezillas.rollBar.PuyoRectangle;
+import org.academiadecodigo.codezillas.rollBar.*;
 import org.academiadecodigo.codezillas.rollBar.blocks.BlockColor;
 import org.academiadecodigo.codezillas.rollBar.blocks.BlockType;
 import org.academiadecodigo.codezillas.rollBar.blocks.Direction;
@@ -68,8 +65,8 @@ public class Cube implements KeyboardHandler {
    }
 
    private void hide(){
-      master.delete();
-      slave.delete();
+
+
    }
 
    public void keyPressed(KeyboardEvent keyboardEvent) {
@@ -102,7 +99,8 @@ public class Cube implements KeyboardHandler {
                if(!swap) {
                   master.translate(0, -grid.getCellSize());
                   slave.translate(0, grid.getCellSize());
-                  swapColors();
+                  swapBlocks(this.masterBlock, this.slaveBlock);
+
                   System.out.println("SWAP");
                   this.swap = true;
                   break;
@@ -110,8 +108,9 @@ public class Cube implements KeyboardHandler {
 
                master.translate(0, grid.getCellSize());
                slave.translate(0, -grid.getCellSize());
-               swapColors();
+
                System.out.println("SWAP");
+               swapBlocks(this.masterBlock, this.slaveBlock);
                this.swap = false;
                break;
       }
@@ -123,6 +122,28 @@ public class Cube implements KeyboardHandler {
       masterBlock.setColor(slaveBlock.getColor());
       slaveBlock.setColor(masterBlockcolor);
 
+
+   }
+   public void swapBlocks(GameBlock masterBlock, GameBlock slaveBlock){
+
+
+
+         this.masterBlock = slaveBlock;
+         this.slaveBlock = masterBlock;
+
+
+
+   }
+
+   public void destroy(){
+      master.delete();
+      Game.getMatrix()[masterBlock.getPosition().getCol()][getMasterBlock().getPosition().getRow()] = null;
+
+   }
+
+   public void destroySlave(){
+      slave.delete();
+      Game.getMatrix()[slaveBlock.getPosition().getCol()][slaveBlock.getPosition().getRow()] = null;
 
    }
 

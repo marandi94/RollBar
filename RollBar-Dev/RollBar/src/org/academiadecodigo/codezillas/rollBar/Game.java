@@ -32,6 +32,9 @@ public class Game {
     public void start() throws InterruptedException{
 
            //start
+        Music music = new Music();
+
+        music.startMusic();
 
         //thread things
 
@@ -46,6 +49,7 @@ public class Game {
             players[0].initKeyboard(activeCube);
             if(gameOver()){
                 System.out.println("Game Over");
+
                 return;
             }
 
@@ -72,6 +76,7 @@ public class Game {
 
             }
         }
+
         //elevator music
 
     }
