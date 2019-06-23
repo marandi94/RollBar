@@ -5,5 +5,5 @@ import org.academiadecodigo.simplegraphics.graphics.Shape;
 public class BlockShape {
 
     private Shape shape;
- .
+
 }

@@ -124,8 +124,7 @@ public abstract class GameBlock implements Movable {
     }
 
 
-
-
-
-
+    public BlockColor getColor() {
+        return color;
+    }
 }

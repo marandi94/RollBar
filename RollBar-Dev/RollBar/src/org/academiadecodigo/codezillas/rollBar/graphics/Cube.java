@@ -1,5 +1,6 @@
 package org.academiadecodigo.codezillas.rollBar.graphics;
 
+import org.academiadecodigo.codezillas.rollBar.ColorMapper;
 import org.academiadecodigo.codezillas.rollBar.blocks.Block;
 import org.academiadecodigo.codezillas.rollBar.blocks.BlockFactory;
 import org.academiadecodigo.codezillas.rollBar.blocks.Direction;
@@ -14,27 +15,27 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 public class Cube implements KeyboardHandler {
 
    private Grid grid;
-   private Rectangle cube;
+   private Rectangle block;
    private GameBlock gameBlock;
 
    public Cube(Grid grid, GameBlock gameblock) {
       this.grid = grid;
       this.gameBlock = gameblock;
 
-      cube = new Rectangle(grid.columnToX(4), grid.rowToY(0), grid.getCellSize(), grid.getCellSize());
-      cube.setColor(Color.CYAN);
+      block = new Rectangle(grid.columnToX(4), grid.rowToY(0), grid.getCellSize(), grid.getCellSize());
+      block.setColor(ColorMapper.getColor(gameblock.getColor()));
       show();
 
    }
 
    private void show(){
 
-      cube.fill();
+      block.fill();
 
    }
 
    private void hide(){
-      cube.delete();
+      block.delete();
    }
 
    public void keyPressed(KeyboardEvent keyboardEvent) {
@@ -45,14 +46,14 @@ public class Cube implements KeyboardHandler {
       switch (key) {
          case KeyboardEvent.KEY_LEFT:
             if (gameBlock.move(Direction.LEFT)) {
-               cube.translate(-grid.getCellSize(), 0);
+               block.translate(-grid.getCellSize(), 0);
                System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + gameBlock.getPosition().getRow());
                break;
             }
             break;
          case KeyboardEvent.KEY_RIGHT:
             if (gameBlock.move(Direction.RIGHT)) {
-               cube.translate(grid.getCellSize(), 0);
+               block.translate(grid.getCellSize(), 0);
                System.out.println("GAMEBlock" + gameBlock.getPosition().getCol() + " " + gameBlock.getPosition().getRow());
                break;
             }
@@ -67,13 +68,13 @@ public class Cube implements KeyboardHandler {
 
    public void fall(boolean bool){
       if(bool) {
-         cube.translate(0, grid.getCellSize());
+         block.translate(0, grid.getCellSize());
 
       }
    }
 
    public Rectangle getCube() {
-      return cube;
+      return block;
    }
 
    public GameBlock getGameBlock() {
