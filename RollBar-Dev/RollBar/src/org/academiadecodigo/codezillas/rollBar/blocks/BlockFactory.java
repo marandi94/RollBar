@@ -1,33 +1,40 @@
 package org.academiadecodigo.codezillas.rollBar.blocks;
 
+import org.academiadecodigo.codezillas.rollBar.Game;
+import org.academiadecodigo.codezillas.rollBar.graphics.Cube;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Position;
+
 
 public abstract class BlockFactory {
     private static GameBlock[] allBlocks = new GameBlock[20];
     private static int counter;
     private static Grid grid;
 
-    public BlockFactory(){
+    public BlockFactory() {
 
     }
 
-    private static BlockType chooseBlockType(){
+    public static Cube createCube(Grid grid) {
 
-        int random =(int) Math.floor(Math.random()*100);
+        return new Cube(grid, create());
+
+    }
+
+    private static BlockType chooseBlockType() {
+
+        int random = (int) Math.floor(Math.random() * 100);
         if (random <= 3) {
             return BlockType.BREAKER;
         }
         return BlockType.BLOCK;
     }
 
-
-
-    private static BlockColor chooseColorBlock(){
+    private static BlockColor chooseColorBlock() {
 
         int random = (int) (Math.random() * BlockColor.values().length);
 
-        switch (random){
+        switch (random) {
             case 0:
                 return BlockColor.RED;
             case 1:
@@ -44,28 +51,22 @@ public abstract class BlockFactory {
 
     }
 
-    public static GameBlock create(){
+    public static GameBlock create() {
 
         BlockType blockType = chooseBlockType();
-        Position initialPos = new Position(4,0,grid);
+        Position initialPos = new Position(4, 0, grid);
+        Position initialPos2 = new Position(4, -1, grid);
 
-        if (blockType == BlockType.BLOCK){
-            Block block = new Block(chooseColorBlock(),blockType,initialPos);
-            allBlocks[counter] = block;
-            counter++;
-            return block;
-        }
-        Breaker breaker = new Breaker(chooseColorBlock(),blockType,initialPos);
-        allBlocks[counter] = breaker;
+        GameBlock block = new Block(chooseColorBlock(), blockType, initialPos);
+        GameBlock slave = new Block(chooseColorBlock(), blockType, initialPos2);
+        System.out.println("here i am!");
+        block.setSlave(slave);
         counter++;
-        return breaker;
+        return block;
+
+
     }
-
-
-
-    public static GameBlock[] getAllBlocks() {
-        return allBlocks;
-    }
+}
 
     /*
     public Block makeBlock(){
@@ -82,4 +83,4 @@ public abstract class BlockFactory {
     }
 */
 
-}
+

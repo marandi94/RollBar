@@ -9,7 +9,7 @@ import org.academiadecodigo.codezillas.rollBar.blocks.Block;
 
 public class Main {
     public static void main(String[] args) {
-
+        /*
          Grid grid = new Grid();
 
         grid.init();
@@ -22,10 +22,14 @@ public class Main {
         Player one = new Player();
 
         one.initKeyboard(test);
-
-
-
-
+*/
+        Player[] players = new Player[2];
+        players[0] = new Player();
+        Game game = new Game(players);
+        try {game.start();
+        }catch (InterruptedException inter){
+            System.out.println("ok, great");
+        }
 
     }
 }
