@@ -92,6 +92,7 @@ public class Cube implements KeyboardHandler {
                System.out.println("GAMEBlock" + masterBlock.getPosition().getCol() + " " + masterBlock.getPosition().getRow());
                break;
             }
+            break;
 
             case KeyboardEvent.KEY_DOWN:
                if(!swap) {

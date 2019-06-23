@@ -33,12 +33,18 @@ public class Game {
         //thread things
 
         while(true) {
+
             players[0].setCube(BlockFactory.createCube(gameBoard));
+
 
             Cube activeCube = players[0].getCube();
             GameBlock activeBlock = activeCube.getMasterBlock();
             players[0].setCurrentPiece(activeBlock);
             players[0].initKeyboard(activeCube);
+            if(gameOver()){
+                System.out.println("Game Over");
+                return;
+            }
 
             while (activeCube.getMasterBlock().isActive()) {
 
@@ -49,6 +55,7 @@ public class Game {
                     System.out.println("MASTER " + " ROW " + activeCube.getMasterBlock().getPosition().getRow() + " Color " + activeCube.getMasterBlock().getColor());
                     activeBlock.setActive(false);
                     activeBlock.getSlave().setActive(false);
+
 
                     setBlockIndex(activeBlock);
                     setSlaveIndex(activeBlock);
@@ -68,19 +75,32 @@ public class Game {
                 activeCube.fall(activeBlock.fall());
 
 
+
             }
         }
         //elevator music
 
     }
 
+    public boolean gameOver(){
+
+        Cube activeCube = players[0].getCube();
+        GameBlock activeBlock = activeCube.getMasterBlock();
+
+
+        if(activeBlock.getPosition().getRow() == 1 && CheckColision.checkIfColides(activeBlock.getPosition(), Direction.DOWN)== true){
+            return true;
+        }
+        return false;
+
+    }
+
     public boolean isOccupied(GameBlock block){
 
-
-            if (matrix[block.getCol()][block.getRow() + 1] != null){
-                return true;
+        if (matrix[block.getCol()][block.getRow() + 1] != null){
+            return true;
         }
-            return false;
+        return false;
 
     }
 
