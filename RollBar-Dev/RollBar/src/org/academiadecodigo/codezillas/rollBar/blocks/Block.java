@@ -8,6 +8,7 @@ public class Block extends GameBlock implements KeyboardHandler {
 
     public Block(BlockColor color, BlockType blocktype, Position position){
         super(color,blocktype,position);
+
     }
 
 
