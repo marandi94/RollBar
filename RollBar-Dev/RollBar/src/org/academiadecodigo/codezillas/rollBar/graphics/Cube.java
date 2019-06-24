@@ -99,8 +99,7 @@ public class Cube implements KeyboardHandler {
                if(!swap) {
                   master.translate(0, -grid.getCellSize());
                   slave.translate(0, grid.getCellSize());
-                  swapBlocks(this.masterBlock, this.slaveBlock);
-
+                  swapColors();
                   System.out.println("SWAP");
                   this.swap = true;
                   break;
@@ -108,9 +107,8 @@ public class Cube implements KeyboardHandler {
 
                master.translate(0, grid.getCellSize());
                slave.translate(0, -grid.getCellSize());
-
+               swapColors();
                System.out.println("SWAP");
-               swapBlocks(this.masterBlock, this.slaveBlock);
                this.swap = false;
                break;
       }

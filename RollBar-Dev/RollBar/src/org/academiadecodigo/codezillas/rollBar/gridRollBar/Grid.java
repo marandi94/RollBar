@@ -19,10 +19,16 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
         }
         public void init() {
 
-            canvas.setColor(Color.GRAY);
-            canvas.draw();
+            canvas.setColor(Color.BLACK);
+            canvas.fill();
 
         }
+
+        public void hide(){
+            canvas.delete();
+        }
+
+
 
         public int getCols() {
             return cols;
