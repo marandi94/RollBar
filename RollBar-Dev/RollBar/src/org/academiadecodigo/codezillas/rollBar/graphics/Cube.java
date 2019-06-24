@@ -1,9 +1,6 @@
 package org.academiadecodigo.codezillas.rollBar.graphics;
 
-import org.academiadecodigo.codezillas.rollBar.Breakable;
-import org.academiadecodigo.codezillas.rollBar.ColorMapper;
-import org.academiadecodigo.codezillas.rollBar.PuyoBreaker;
-import org.academiadecodigo.codezillas.rollBar.PuyoRectangle;
+import org.academiadecodigo.codezillas.rollBar.*;
 import org.academiadecodigo.codezillas.rollBar.blocks.BlockColor;
 import org.academiadecodigo.codezillas.rollBar.blocks.BlockType;
 import org.academiadecodigo.codezillas.rollBar.blocks.Direction;
@@ -131,6 +128,26 @@ public class Cube implements KeyboardHandler {
 
 
 
+   }
+
+
+   public void searchDestroy(GameBlock block){
+      int counter = 0;
+      while (counter < 96) {
+
+         for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 16; j++) {
+               if (Game.getMatrix()[i][j] == null) {
+                  counter++;
+                  continue;
+               }
+               if (Game.getMatrix()[i][j].getColor().equals(block.getColor())) {
+                  System.out.println("BOOOOOOOOOOOOOMMMMMMMMMMMMMMM");
+                  counter++;
+               }
+            }
+         }
+      }
    }
 
    public void fall(boolean bool){

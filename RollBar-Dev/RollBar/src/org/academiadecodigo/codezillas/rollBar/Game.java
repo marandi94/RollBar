@@ -1,9 +1,6 @@
 package org.academiadecodigo.codezillas.rollBar;
 
-import org.academiadecodigo.codezillas.rollBar.blocks.BlockFactory;
-import org.academiadecodigo.codezillas.rollBar.blocks.CheckColision;
-import org.academiadecodigo.codezillas.rollBar.blocks.Direction;
-import org.academiadecodigo.codezillas.rollBar.blocks.GameBlock;
+import org.academiadecodigo.codezillas.rollBar.blocks.*;
 import org.academiadecodigo.codezillas.rollBar.graphics.Cube;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
 
@@ -20,7 +17,7 @@ public class Game {
         this.gameBoard = new Grid();
         this.gameEngine = gameEngine;
         this.matrix = new GameBlock[gameBoard.getCols()][gameBoard.getRows()+1];
-        this.delay = 50;
+        this.delay = 300;
         gameBoard.init();
     }
 
@@ -46,7 +43,7 @@ public class Game {
             players[0].initKeyboard(activeCube);
             if(gameOver()){
                 System.out.println("Game Over");
-                return;
+                break;
             }
 
             while (activeCube.getMasterBlock().isActive()) {
@@ -59,6 +56,17 @@ public class Game {
                     activeBlock.setActive(false);
                     activeBlock.getSlave().setActive(false);
 
+                    if (activeBlock instanceof Breaker) {
+
+                        activeCube.searchDestroy(activeBlock);
+                        Thread.sleep(3000);
+
+                    } else if (activeBlock.getSlave() instanceof Breaker){
+
+                        activeCube.searchDestroy(activeBlock.getSlave());
+                        Thread.sleep(3000);
+
+                    }
 
                     setBlockIndex(activeBlock);
                     setSlaveIndex(activeBlock);
@@ -71,6 +79,7 @@ public class Game {
 
 
             }
+
         }
         //elevator music
 
