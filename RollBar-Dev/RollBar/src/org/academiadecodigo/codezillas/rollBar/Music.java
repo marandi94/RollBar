@@ -10,7 +10,7 @@ import java.net.URL;
 
 public class Music {
     public void startMusic() {
-        String pathStr = "/resources/music/1090.wav";
+        String pathStr = "/resources/music/sooper.wav";
         URL soundURL;
         AudioInputStream audioInputStream = null;
         try {
@@ -37,4 +37,9 @@ public class Music {
             e.printStackTrace();
         }
     }
+
+
 }
+
+
+
