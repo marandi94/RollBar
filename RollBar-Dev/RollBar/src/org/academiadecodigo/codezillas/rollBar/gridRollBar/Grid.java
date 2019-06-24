@@ -15,13 +15,20 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
             canvas = new Rectangle(PADDING,PADDING,cols*CELL_SIZE,rows*CELL_SIZE);
 
+
         }
         public void init() {
 
-            canvas.setColor(Color.GRAY);
-            canvas.draw();
+            canvas.setColor(Color.BLACK);
+            canvas.fill();
 
         }
+
+        public void hide(){
+            canvas.delete();
+        }
+
+
 
         public int getCols() {
             return cols;
