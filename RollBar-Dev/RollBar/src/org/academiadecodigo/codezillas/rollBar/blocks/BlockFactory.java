@@ -26,7 +26,7 @@ public abstract class BlockFactory {
     private static BlockType chooseBlockType() {
 
         int random = (int) Math.floor(Math.random() * 100);
-        if (random <= 53) {
+        if (random <= 13) {
             return BlockType.BREAKER;
         }
         return BlockType.BLOCK;

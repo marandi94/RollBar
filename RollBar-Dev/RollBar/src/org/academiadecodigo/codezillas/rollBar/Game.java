@@ -1,9 +1,6 @@
 package org.academiadecodigo.codezillas.rollBar;
 
-import org.academiadecodigo.codezillas.rollBar.blocks.BlockFactory;
-import org.academiadecodigo.codezillas.rollBar.blocks.CheckColision;
-import org.academiadecodigo.codezillas.rollBar.blocks.Direction;
-import org.academiadecodigo.codezillas.rollBar.blocks.GameBlock;
+import org.academiadecodigo.codezillas.rollBar.blocks.*;
 import org.academiadecodigo.codezillas.rollBar.graphics.Cube;
 import org.academiadecodigo.codezillas.rollBar.gridRollBar.Grid;
 import org.academiadecodigo.simplegraphics.graphics.Color;
@@ -13,7 +10,7 @@ import org.academiadecodigo.simplegraphics.graphics.Text;
 
 public class Game {
     private Player[] players;
-    private Grid gameBoard;
+    private static Grid gameBoard;
 
     private static GameBlock[][] matrix;
     private int delay;
@@ -23,8 +20,8 @@ public class Game {
     public Game(Player[] players) {
         this.players = players;
         this.gameBoard = new Grid();
-        this.matrix = new GameBlock[gameBoard.getCols()][gameBoard.getRows()+1];
-        this.delay = 50;
+        this.matrix = new GameBlock[gameBoard.getCols()+1][gameBoard.getRows()+2];
+        this.delay = 150;
         scoreText = new Text(12* 40, 6*40, " SCORE "
                +"<"+ score + ">");
         gameBoard.init();
@@ -66,6 +63,12 @@ public class Game {
 
                     setBlockIndex(activeBlock);
                     setSlaveIndex(activeBlock);
+                    if(activeBlock instanceof Breaker){
+                        ((Breaker) activeBlock).search2(activeBlock.getPosition());
+                    }
+                    if(activeBlock.getSlave() instanceof Breaker){
+                        ((Breaker) activeBlock.getSlave()).search2(activeBlock.getSlave().getPosition());
+                    }
                     System.out.println("check 2");
 
                 }
@@ -105,7 +108,7 @@ public class Game {
 
     }
 
-    public Grid getGameBoard() {
+    public static Grid getGameBoard() {
         return gameBoard;
     }
 
